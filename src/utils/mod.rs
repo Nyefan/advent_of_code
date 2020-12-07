@@ -15,8 +15,6 @@ pub fn bisect(year: i32) -> Result<(Vec<i32>, Vec<i32>), Error> {
     first_half.sort();
     first_half.reverse();
     second_half.sort();
-    println!("{:?}", first_half);
-    println!("{:?}", second_half);
     Ok((first_half, second_half))
 }
 
