@@ -1,10 +1,9 @@
-use crate::utils;
 use std::io::Error;
 
 pub fn main() -> Result<(), Error> {
     let year = 2020;
 
-    let (first_half, second_half) = utils::bisect(year)?;
+    let (first_half, second_half) = super::bisect(year)?;
     let mut index = 0;
     'outer: for first in first_half {
         'inner: for (i, second) in second_half[index..].iter().enumerate() {
