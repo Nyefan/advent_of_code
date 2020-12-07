@@ -9,6 +9,8 @@ pub fn main() -> Result<(), Error> {
     'first: for (i, first) in first_half.iter().enumerate() {
         for (j, second) in first_half[i + 1..].iter().enumerate() {
             if first + second > year / 2 {
+                // it's probably faster to do another bisection on the sum of all pairs of elements
+                // from the first half, but there were only 12 elements less than 1010 in the input
                 'thirdif: for third in first_half[j + 1..].iter() {
                     if first + second + third == year {
                         print_result(first, second, third);
