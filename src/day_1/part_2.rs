@@ -1,9 +1,10 @@
-use std::io::Error;
+use std::error::Error;
+use super::bisect;
 
-pub fn main() -> Result<(), Error> {
+pub fn main() -> Result<(), Box<dyn Error>> {
     let year = 2020;
 
-    let (first_half, second_half) = super::bisect(year)?;
+    let (first_half, second_half) = bisect(year)?;
     let mut second_half_index = 1;
     'first: for (i, first) in first_half.iter().enumerate() {
         for (j, second) in first_half[i + 1..].iter().enumerate() {
