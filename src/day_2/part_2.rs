@@ -12,6 +12,10 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 }
 
 fn validate(ps: &PasswordSpecification) -> bool {
-    let count = ps.password.chars().filter(|c| c.eq(&ps.letter)).count() as i32;
-    return count >= ps.range.0 && count <= ps.range.1;
+    fn get_char(ps: &PasswordSpecification, index: i32) -> Option<char> {
+        ps.password.chars().nth(index as usize)
+    }
+    let first = get_char(ps, ps.range.0 - 1) == Some(ps.letter);
+    let second = get_char(ps, ps.range.1 - 1) == Some(ps.letter);
+    first ^ second
 }

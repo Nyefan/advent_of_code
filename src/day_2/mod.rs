@@ -1,7 +1,8 @@
-use std::str::FromStr;
 use std::error::Error;
+use std::str::FromStr;
 
 pub mod part_1;
+pub mod part_2;
 
 struct PasswordSpecification {
     range: (i32, i32),
@@ -31,8 +32,4 @@ impl FromStr for PasswordSpecification {
             password: split.next().unwrap().to_string(),
         })
     }
-}
-
-trait Validator {
-    fn validate(&self) -> bool;
 }
