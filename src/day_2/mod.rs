@@ -1,3 +1,4 @@
+use crate::utils::read_lines;
 use std::error::Error;
 use std::str::FromStr;
 
@@ -32,4 +33,13 @@ impl FromStr for PasswordSpecification {
             password: split.next().unwrap().to_string(),
         })
     }
+}
+
+fn count(
+    validator: for<'r> fn(&'r PasswordSpecification) -> bool,
+) -> Result<usize, Box<dyn Error>> {
+    Ok(read_lines("./inputs/2.input")?
+        .flat_map(|line| line?.parse::<PasswordSpecification>())
+        .filter(validator)
+        .count())
 }
