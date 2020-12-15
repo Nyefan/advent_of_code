@@ -11,5 +11,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     day_2::part_1::main()?;
     day_2::part_2::main()?;
     day_3::part_1::main()?;
+    day_3::part_2::main()?;
     Ok(())
 }
