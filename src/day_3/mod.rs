@@ -1,28 +1,19 @@
 use crate::utils::read_lines;
-use std::sync::Once;
 use tree_row::TreeRow;
 
 pub mod part_1;
 pub mod part_2;
 mod tree_row;
 
-static mut TREE_MAP: Vec<TreeRow> = vec![];
-static INIT: Once = Once::new();
-
-fn get_tree_map() -> &'static Vec<TreeRow> {
-    unsafe {
-        INIT.call_once(|| {
-            TREE_MAP = read_lines("./inputs/3.input")
-                .unwrap()
-                .flat_map(|line| line?.parse::<TreeRow>())
-                .collect()
-        });
-        &TREE_MAP
-    }
+lazy_static! {
+    static ref TREE_MAP: Vec<TreeRow> = read_lines("./inputs/3.input")
+        .unwrap()
+        .flat_map(|line| line?.parse::<TreeRow>())
+        .collect();
 }
 
 fn count(slope: &(usize, usize)) -> usize {
-    get_tree_map()
+    TREE_MAP
         .iter()
         .step_by(slope.1)
         .enumerate()

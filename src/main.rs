@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate lazy_static;
+
 use std::error::Error;
 
 mod day_1;
