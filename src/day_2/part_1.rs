@@ -2,7 +2,7 @@ use super::PasswordSpecification;
 use std::error::Error;
 
 pub fn main() -> Result<(), Box<dyn Error>> {
-    println!("Valid Password Count: {}", super::count(validator)?);
+    println!("day_02::part_1:\tValid password count: {}", super::count(validator)?);
     Ok(())
 }
 

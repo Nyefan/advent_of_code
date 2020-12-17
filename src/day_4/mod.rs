@@ -15,12 +15,3 @@ lazy_static! {
         .flat_map(|line| line.parse::<Passport>())
         .collect();
 }
-
-// fn count(slope: &(usize, usize)) -> usize {
-//     TREE_MAP
-//         .iter()
-//         .step_by(slope.1)
-//         .enumerate()
-//         .filter(|&e| e.1[&(e.0 * slope.0)])
-//         .count()
-// }

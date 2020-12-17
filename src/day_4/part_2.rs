@@ -9,7 +9,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         .iter()
         .filter(validator)
         .count();
-    println!("Valid passports: {}", count);
+    println!("day_04::part_2:\tValid passport count: {}", count);
     Ok(())
 }
 

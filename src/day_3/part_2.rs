@@ -9,7 +9,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         .collect();
     let product: usize = encounters.iter().product();
     println!(
-        "Trees encountered: {} * {} * {} * {} * {} = {}",
+        "day_03::part_2:\tTrees encountered: {} * {} * {} * {} * {} = {}",
         encounters[0], encounters[1], encounters[2], encounters[3], encounters[4], product
     );
     Ok(())

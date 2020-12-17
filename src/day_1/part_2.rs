@@ -39,7 +39,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
 fn print_result(first: &i32, second: &i32, third: &i32) {
     println!(
-        "day_01::part_2:\t {0} + {1} + {2} = {3}; {0} * {1} * {2} = {4}",
+        "day_01::part_2:\tSum 2020 product: {0} + {1} + {2} = {3}; {0} * {1} * {2} = {4}",
         first,
         second,
         third,

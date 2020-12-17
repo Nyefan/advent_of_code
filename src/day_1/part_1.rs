@@ -10,7 +10,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         'inner: for (i, second) in second_half[index..].iter().enumerate() {
             if first + second == year {
                 println!(
-                    "day_01::part_1:\t {0} + {1} = {2}; {0} * {1} = {3}",
+                    "day_01::part_1:\tSum 2020 product: {0} + {1} = {2}; {0} * {1} = {3}",
                     first,
                     second,
                     year,
