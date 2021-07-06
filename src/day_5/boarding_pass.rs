@@ -27,4 +27,4 @@ fn str_to_num(s: &str, zero: &str, one: &str) -> Result<usize, ParseIntError> {
     let s = s.replace(zero, "0").replace(one, "1");
     usize::from_str_radix(s.as_str(), 2)
 }
-test
+test2
