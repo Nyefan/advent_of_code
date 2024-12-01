@@ -38,7 +38,7 @@ impl FromStr for PasswordSpecification {
 fn count(
     validator: for<'r> fn(&'r PasswordSpecification) -> bool,
 ) -> Result<usize, Box<dyn Error>> {
-    Ok(read_lines("./inputs/2.input")?
+    Ok(read_lines("../../inputs/2.input")?
         .flat_map(|line| line?.parse::<PasswordSpecification>())
         .filter(validator)
         .count())
