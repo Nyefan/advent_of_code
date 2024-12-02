@@ -1,8 +1,10 @@
 [workspace]
 members = [
     "aoc_2024_01",
+    "aoc_2024_02",
     "common"
 ]
+resolver = "2"
 
 [workspace.dependencies]
 common = {path = "./common"}
