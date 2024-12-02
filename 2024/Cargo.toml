@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "aoc_2024_01",
+    "common"
+]
+
+[workspace.dependencies]
+common = {path = "./common"}
+
