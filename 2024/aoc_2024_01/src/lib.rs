@@ -1,11 +1,10 @@
 use std::collections::HashMap;
 use std::error::Error;
 use std::fs::read_to_string;
-use std::io;
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-fn part_1(path_to_data: &str) -> Result<i32> {
+pub fn part_1(path_to_data: &str) -> Result<i32> {
     let mut lists: (Vec<i32>, Vec<i32>) = read_to_string(path_to_data)?
         .lines()
         .map(|line| {
@@ -29,7 +28,7 @@ fn part_1(path_to_data: &str) -> Result<i32> {
     Ok(sum)
 }
 
-fn part_1_fast(path_to_data: &str) -> Result<i32> {
+pub fn part_1_fast(path_to_data: &str) -> Result<i32> {
     Ok(read_to_string(path_to_data)?
         .lines()
         .map(|line| {
@@ -41,7 +40,7 @@ fn part_1_fast(path_to_data: &str) -> Result<i32> {
         .abs())
 }
 
-fn part_2(path_to_data: &str) -> Result<i32> {
+pub fn part_2(path_to_data: &str) -> Result<i32> {
     let lists: Vec<(i32, i32)> = read_to_string(path_to_data)?
         .lines()
         .map(|line| {
@@ -78,7 +77,7 @@ mod tests {
         assert_eq!(result_actual, 1320851);
         Ok(())
     }
-    
+
     #[test]
     fn test_part_2() -> Result<()> {
         let result_sample = part_2("data/sample")?;

@@ -2,7 +2,7 @@ use regex::Regex;
 
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
-fn part_1(input: &str) -> Result<i32> {
+pub fn part_1(input: &str) -> Result<i32> {
     let re =
         Regex::new(r"(?<operation>mul)\((?<first_operand>\d+),(?<second_operand>\d+)\)").unwrap();
     let result = re
@@ -13,7 +13,7 @@ fn part_1(input: &str) -> Result<i32> {
     Ok(result)
 }
 
-fn part_2(input: &str) -> Result<i32> {
+pub fn part_2(input: &str) -> Result<i32> {
     let valid_operations = ("do()".to_string() + input)
         .split("don't()")
         .map(|s| s.split_once("do()").unwrap_or(("", "")).1)

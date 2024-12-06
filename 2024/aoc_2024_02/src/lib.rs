@@ -2,12 +2,12 @@ use std::error::Error;
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-fn part_1(lines: &[Vec<i32>]) -> Result<i32> {
+pub fn part_1(lines: &[Vec<i32>]) -> Result<i32> {
     let safe_lines_count = lines.iter().filter(|&line| line.is_safe()).count() as i32;
     Ok(safe_lines_count)
 }
 
-fn part_2(lines: &[Vec<i32>]) -> Result<i32> {
+pub fn part_2(lines: &[Vec<i32>]) -> Result<i32> {
     let safe_lines_count = lines
         .iter()
         .filter(|&line| line.is_safe() || line.is_safe_with_damper())
