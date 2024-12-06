@@ -1,21 +1,13 @@
 use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let args: Vec<String> = std::env::args().collect();
-    let lines = common::parse_file(&args[1])?;
-    let part_1 = part_1(&lines)?;
-    let part_2 = part_2(&lines)?;
-    println!("part_1: {}", part_1);
-    println!("part_2: {}", part_2);
-    Ok(())
-}
+type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-fn part_1(lines: &[Vec<i32>]) -> Result<i32, Box<dyn Error>> {
+fn part_1(lines: &[Vec<i32>]) -> Result<i32> {
     let safe_lines_count = lines.iter().filter(|&line| line.is_safe()).count() as i32;
     Ok(safe_lines_count)
 }
 
-fn part_2(lines: &[Vec<i32>]) -> Result<i32, Box<dyn Error>> {
+fn part_2(lines: &[Vec<i32>]) -> Result<i32> {
     let safe_lines_count = lines
         .iter()
         .filter(|&line| line.is_safe() || line.is_safe_with_damper())
@@ -47,5 +39,32 @@ impl IsSafe for &Vec<i32> {
             }
         }
         false
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part_1() -> Result<()> {
+        let lines_sample = common::parse_file("data/sample")?;
+        let result_sample = part_1(&lines_sample)?;
+        assert_eq!(result_sample, 2);
+        let lines_actual = common::parse_file("data/actual")?;
+        let result_actual = part_1(&lines_actual)?;
+        assert_eq!(result_actual, 432);
+        Ok(())
+    }
+
+    #[test]
+    fn test_part_2() -> Result<()> {
+        let lines_sample = common::parse_file("data/sample")?;
+        let result_sample = part_2(&lines_sample)?;
+        assert_eq!(result_sample, 4);
+        let lines_actual = common::parse_file("data/actual")?;
+        let result_actual = part_2(&lines_actual)?;
+        assert_eq!(result_actual, 488);
+        Ok(())
     }
 }

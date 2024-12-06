@@ -1,21 +1,11 @@
 use std::collections::HashMap;
+use std::error::Error;
 use std::fs::read_to_string;
 use std::io;
 
-fn main() -> io::Result<()> {
-    let args: Vec<String> = std::env::args().collect();
-    let part_1 = part_1(&args[1])?;
-    let part_1_fast = part_1_fast(&args[1])?;
-    let part_2 = part_2(&args[1])?;
+type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-    println!("     part_1: {}", part_1);
-    println!("part_1_fast: {}", part_1_fast);
-    println!("     part_2: {}", part_2);
-
-    Ok(())
-}
-
-fn part_1(path_to_data: &str) -> io::Result<i32> {
+fn part_1(path_to_data: &str) -> Result<i32> {
     let mut lists: (Vec<i32>, Vec<i32>) = read_to_string(path_to_data)?
         .lines()
         .map(|line| {
@@ -39,7 +29,7 @@ fn part_1(path_to_data: &str) -> io::Result<i32> {
     Ok(sum)
 }
 
-fn part_1_fast(path_to_data: &str) -> io::Result<i32> {
+fn part_1_fast(path_to_data: &str) -> Result<i32> {
     Ok(read_to_string(path_to_data)?
         .lines()
         .map(|line| {
@@ -51,7 +41,7 @@ fn part_1_fast(path_to_data: &str) -> io::Result<i32> {
         .abs())
 }
 
-fn part_2(path_to_data: &str) -> io::Result<i32> {
+fn part_2(path_to_data: &str) -> Result<i32> {
     let lists: Vec<(i32, i32)> = read_to_string(path_to_data)?
         .lines()
         .map(|line| {
@@ -74,4 +64,27 @@ fn part_2(path_to_data: &str) -> io::Result<i32> {
         .map(|(k, v)| k * v * counters.1.get(k).unwrap_or(&default_value))
         .sum();
     Ok(sum)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part_1() -> Result<()> {
+        let result_sample = part_1("data/sample")?;
+        assert_eq!(result_sample, 11);
+        let result_actual = part_1("data/actual")?;
+        assert_eq!(result_actual, 1320851);
+        Ok(())
+    }
+    
+    #[test]
+    fn test_part_2() -> Result<()> {
+        let result_sample = part_2("data/sample")?;
+        assert_eq!(result_sample, 31);
+        let result_actual = part_2("data/actual")?;
+        assert_eq!(result_actual, 26859182);
+        Ok(())
+    }
 }

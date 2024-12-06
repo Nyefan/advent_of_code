@@ -1,11 +1,16 @@
 use std::io;
-pub fn parse_file(path: &str) -> io::Result<Vec<Vec<i32>>> {
+use std::str::FromStr;
+
+pub fn parse_file<T: FromStr>(path: &str) -> io::Result<Vec<Vec<T>>>
+where
+    <T as FromStr>::Err: std::fmt::Debug,
+{
     Ok(std::fs::read_to_string(path)?
         .lines()
         .map(|x| {
             x.split_whitespace()
-                .map(|str| str.parse::<i32>().unwrap())
-                .collect::<Vec<_>>()
+                .map(|x| x.parse::<T>().unwrap())
+                .collect::<Vec<T>>()
         })
-        .collect())
+        .collect::<Vec<Vec<T>>>())
 }

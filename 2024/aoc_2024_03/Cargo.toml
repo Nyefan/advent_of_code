@@ -4,6 +4,4 @@ rust-version = "1.83"
 edition = "2021"
 
 [dependencies]
-common.workspace = true
-common.regex = true
 regex = "1.11.1"
