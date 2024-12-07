@@ -21,35 +21,35 @@ pub fn part_1(input: String) -> Result<i32> {
 }
 
 pub fn part_2(input: String) -> Result<i32> {
-    let mut map = parse(input)?;
-    let mut cursor = map
-        .get_cursor()
-        .ok_or("Error parsing map: no starting cursor")?;
-    map[cursor.0][cursor.1] = Tile::Empty;
-    while StepResult::Continue == step(&mut map, &mut cursor)? {}
-    let result = map
-        .iter()
-        .flatten()
-        .filter_map(|tile| {
-            match tile {
-                // Tile::Visited { up: true, down: true, left: true, right: true } => Some(2),
-                // 
-                // Tile::Visited { up: false, down: true, left: true, right: true } => Some(2),
-                // Tile::Visited { up: true, down: false, left: true, right: true } => Some(2),
-                // Tile::Visited { up: true, down: true, left: false, right: true } => Some(2),
-                // Tile::Visited { up: true, down: true, left: true, right: false } => Some(2),
+    let mut result = 0;
+    for i in 0..input.len() {
+        if input.as_bytes()[i] as char == '#' || input.as_bytes()[i] as char == '\n' || input.as_bytes()[i] as char == '^'{
+            continue;
+        }
+        let mut local_input = input.clone();
+        local_input.replace_range(i..i + 1, "#");
+        let mut map = parse(local_input)?;
+        let mut cursor = map
+            .get_cursor()
+            .ok_or("Error parsing map: no starting cursor")?;
+        map[cursor.0][cursor.1] = Tile::Empty;
 
-                Tile::Visited { up: false, down: false, left: true, right: true } => Some(1),
-                Tile::Visited { up: false, down: true, left: false, right: true } => Some(1),
-                Tile::Visited { up: false, down: true, left: true, right: false } => Some(1),
-                Tile::Visited { up: true, down: false, left: false, right: true } => Some(1),
-                Tile::Visited { up: true, down: false, left: true, right: false } => Some(1),
-                Tile::Visited { up: true, down: true, left: false, right: false } => Some(1),
-
-                _ => return None,
+        loop {
+            let step_result = step(&mut map, &mut cursor)?;
+            match step_result {
+                StepResult::Continue => {}
+                StepResult::Stop => {
+                    break;
+                }
+                StepResult::Loop => {
+                    result += 1;
+                    break;
+                }
             }
-        })
-        .sum();
+        }
+        
+    }
+    
     Ok(result)
 }
 
@@ -68,7 +68,7 @@ fn step(map: &mut Map, cursor: &mut Cursor) -> Result<StepResult> {
     use crate::StepResult::{Continue, Stop, Loop};
     let horizontal_length = map[0].len();
     let vertical_length = map.len();
-    let mut current_tile = &mut map[cursor.0][cursor.1];
+    let current_tile = &mut map[cursor.0][cursor.1];
     match cursor.2 {
         Direction::Up => match current_tile {
             Tile::Empty => {
@@ -237,7 +237,7 @@ fn step(map: &mut Map, cursor: &mut Cursor) -> Result<StepResult> {
                     left: false,
                     right: true,
                 };
-                if cursor.0 == horizontal_length - 1 {
+                if cursor.1 == horizontal_length - 1 {
                     return Ok(Stop);
                 }
                 match map[cursor.0][cursor.1 + 1] {
@@ -265,7 +265,7 @@ fn step(map: &mut Map, cursor: &mut Cursor) -> Result<StepResult> {
                     left: *left,
                     right: true,
                 };
-                if cursor.0 == horizontal_length - 1 {
+                if cursor.1 == horizontal_length - 1 {
                     return Ok(Stop);
                 }
                 match map[cursor.0][cursor.1 + 1] {
@@ -287,7 +287,7 @@ fn step(map: &mut Map, cursor: &mut Cursor) -> Result<StepResult> {
 
 fn print_map(map: &Map) {
     println!(
-        "{}",
+        "\n{}",
         map.iter()
             .map(|row| { row.iter().map(String::from).collect::<String>() })
             .collect::<Vec<_>>()
@@ -420,10 +420,10 @@ mod tests {
 
     #[test]
     fn test_part_2() -> Result<()> {
-        // let result_sample = part_2(std::fs::read_to_string("data/sample")?)?;
-        // assert_eq!(result_sample, 6);
-        // let result_actual = part_2(std::fs::read_to_string("data/actual")?)?;
-        // assert_eq!(result_actual, 4151);
+        let result_sample = part_2(std::fs::read_to_string("data/sample")?)?;
+        assert_eq!(result_sample, 6);
+        let result_actual = part_2(std::fs::read_to_string("data/actual")?)?;
+        assert_eq!(result_actual, 1915);
         Ok(())
     }
 }
