@@ -4,4 +4,3 @@ rust-version = "1.83"
 edition = "2021"
 
 [dependencies]
-common.workspace = true

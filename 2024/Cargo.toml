@@ -6,6 +6,7 @@ members = [
     "aoc_2024_04",
     "aoc_2024_05",
     "aoc_2024_06",
+    "aoc_2024_07",
     "common"
 ]
 resolver = "2"
@@ -13,3 +14,4 @@ resolver = "2"
 [workspace.dependencies]
 common = {path = "./common"}
 regex = "1.11.1"
+itertools = "0.13.0"

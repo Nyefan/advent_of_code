@@ -23,7 +23,10 @@ pub fn part_1(input: String) -> Result<i32> {
 pub fn part_2(input: String) -> Result<i32> {
     let mut result = 0;
     for i in 0..input.len() {
-        if input.as_bytes()[i] as char == '#' || input.as_bytes()[i] as char == '\n' || input.as_bytes()[i] as char == '^'{
+        if input.as_bytes()[i] as char == '#'
+            || input.as_bytes()[i] as char == '\n'
+            || input.as_bytes()[i] as char == '^'
+        {
             continue;
         }
         let mut local_input = input.clone();
@@ -47,9 +50,8 @@ pub fn part_2(input: String) -> Result<i32> {
                 }
             }
         }
-        
     }
-    
+
     Ok(result)
 }
 
@@ -65,7 +67,7 @@ fn parse(input: String) -> Result<Map> {
 }
 
 fn step(map: &mut Map, cursor: &mut Cursor) -> Result<StepResult> {
-    use crate::StepResult::{Continue, Stop, Loop};
+    use crate::StepResult::{Continue, Loop, Stop};
     let horizontal_length = map[0].len();
     let vertical_length = map.len();
     let current_tile = &mut map[cursor.0][cursor.1];
@@ -345,7 +347,7 @@ enum Direction {
 enum StepResult {
     Continue,
     Stop,
-    Loop
+    Loop,
 }
 
 impl TryFrom<char> for Tile {
