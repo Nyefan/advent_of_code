@@ -14,9 +14,6 @@ dependencies = [
 [[package]]
 name = "aoc_2024_01"
 version = "0.0.0"
-dependencies = [
- "common",
-]
 
 [[package]]
 name = "aoc_2024_02"
@@ -37,32 +34,21 @@ name = "aoc_2024_04"
 version = "0.0.0"
 dependencies = [
  "common",
- "regex",
 ]
 
 [[package]]
 name = "aoc_2024_05"
 version = "0.0.0"
-dependencies = [
- "common",
- "regex",
-]
 
 [[package]]
 name = "aoc_2024_06"
 version = "0.0.0"
-dependencies = [
- "common",
- "regex",
-]
 
 [[package]]
 name = "aoc_2024_07"
 version = "0.0.0"
 dependencies = [
- "common",
  "itertools",
- "regex",
 ]
 
 [[package]]
