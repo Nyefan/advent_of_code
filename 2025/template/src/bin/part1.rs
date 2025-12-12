@@ -7,6 +7,17 @@ pub fn main() -> Result<()> {
 
     let file = include_str!("../../data/part1.txt");
     let result = process(file)?;
-    println!("{:?}", result);
+    println!("{}", result);
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use {{crate_name}}::part1::process;
+
+    #[test]
+    fn test() {
+        let input = "";
+        assert_eq!("", process(input).unwrap());
+    }
 }

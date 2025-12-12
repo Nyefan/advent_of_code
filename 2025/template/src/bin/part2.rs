@@ -10,3 +10,14 @@ pub fn main() -> Result<()> {
     println!("{:?}", result);
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use {{crate_name}}::part2::process;
+
+    #[test]
+    fn test() {
+        let input = "";
+        assert_eq!("", process(input).unwrap());
+    }
+}

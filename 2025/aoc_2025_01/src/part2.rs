@@ -1,5 +1,6 @@
 use super::Result;
 
-pub fn process(input: impl AsRef<str>) -> Result<()> {
-    todo!("aoc_2025_01 part 2 is not implemented yet")
+pub fn process(input: impl AsRef<str>) -> Result<String> {
+    println!("{}", input.as_ref());
+    Ok("".to_string())
 }

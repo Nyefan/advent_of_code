@@ -7,6 +7,17 @@ pub fn main() -> Result<()> {
 
     let file = include_str!("../../data/part2.txt");
     let result = process(file)?;
-    println!("{:?}", result);
+    println!("{}", result);
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use aoc_2025_01::part2::process;
+
+    #[test]
+    fn test() {
+        let input = "";
+        assert_eq!("", process(input).unwrap());
+    }
 }
