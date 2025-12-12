@@ -1,0 +1,5 @@
+[template]
+ignore = [
+  "*.iml",
+  "data/.gitignore"
+]

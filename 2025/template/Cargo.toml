@@ -1,0 +1,23 @@
+[package]
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+itertools.workspace = true
+nom.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[dev-dependencies]
+divan.workspace = true
+
+[[bench]]
+name = "{{project-name}}-part1-benchmark"
+path = "benches/part1.rs"
+harness = false
+
+[[bench]]
+name = "{{project-name}}-part2-benchmark"
+path = "benches/part2.rs"
+harness = false
