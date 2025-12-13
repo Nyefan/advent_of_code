@@ -1,6 +1,6 @@
 use super::Result;
 
-pub fn process(input: impl AsRef<str>) -> Result<String> {
-    println!("{}", input.as_ref());
+pub fn process(input: &str) -> Result<'_, String> {
+    dbg!("{}", input);
     Ok("".to_string())
 }
