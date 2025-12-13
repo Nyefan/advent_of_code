@@ -2,6 +2,7 @@
 members = [
     "aoc_2025_*",
     "aoc_2025_01",
+    "aoc_2025_02",
 ]
 resolver = "3"
 
