@@ -6,3 +6,6 @@ list:
 template day:
   cargo generate --path template --name "aoc_2025_{{day}}"
 
+[arg('day', pattern='\d{2}')]
+benchmark day:
+  cargo bench -q --package "aoc_2025_{{day}}" --color always --profile release

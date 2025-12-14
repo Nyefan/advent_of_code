@@ -78,3 +78,45 @@ fn aoc_parse(input: &str) -> IResult<&str, Vec<Range<'_>>> {
     }
     all_consuming(separated_list1(char(','), range)).parse(input)
 }
+
+#[derive(Debug)]
+struct RangeNumeric {
+    start: u64,
+    end: u64,
+}
+
+impl RangeNumeric {
+    pub fn ranges_of_constant_powers_of_10(self) -> IntoIter<RangeNumeric> {
+        let mut ranges: Vec<RangeNumeric> = vec![];
+        if self.start.ilog10() == self.end.ilog10() {
+            ranges.push(self);
+        } else {
+            ranges.push(RangeNumeric {
+                start: self.start,
+                end: 10_u64.pow(self.start.ilog10() + 1) - 1,
+            });
+            for i in self.start.ilog10() + 1..=self.end.ilog10() - 1 {
+                ranges.push(RangeNumeric {
+                    start: 10_u64.pow(i),
+                    end: 10_u64.pow(i + 1) - 1,
+                });
+            }
+            ranges.push(RangeNumeric {
+                start: 10_u64.pow(self.end.ilog10()),
+                end: self.end,
+            });
+        }
+        ranges.into_iter()
+    }
+}
+
+fn aoc_parse_numeric(input: &str) -> IResult<&str, Vec<RangeNumeric>> {
+    fn range(input: &str) -> IResult<&str, RangeNumeric> {
+        let (input, (start, end)) = separated_pair(digit1, char('-'), digit1).parse(input)?;
+        let start = map_res(rest, str::parse::<u64>).parse(start)?.1;
+        let end = map_res(rest, str::parse::<u64>).parse(end)?.1;
+
+        Ok((input, RangeNumeric { start, end }))
+    }
+    all_consuming(separated_list1(char(','), range)).parse(input)
+}
