@@ -22,6 +22,12 @@ mod tests {
     }
 
     #[test]
+    fn test_extra() {
+        let input = "1-4150";
+        assert_eq!("82911", process(input).unwrap());
+    }
+
+    #[test]
     fn test_real_input() {
         let input = include_str!("../../data/part1.txt");
         assert_eq!("32976912643", process(input).unwrap());

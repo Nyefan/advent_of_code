@@ -22,7 +22,7 @@ pub fn process(input: &str) -> Result<'_, String> {
 fn invalid_ids_in_range(range: Range<'_>) -> Result<'_, Vec<String>> {
     // naive version
     let mut invalid_ids: Vec<String> = vec![];
-    for i in range.start.parse::<u64>()?..=range.end.parse::<u64>()? {
+    for i in range {
         let id = i.to_string();
         'inner: for i in 0..id.len() / 2 {
             if is_repeated(&id[0..=i], &id) {
