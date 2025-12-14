@@ -4,6 +4,12 @@ fn main() {
     divan::main();
 }
 
+// #[divan::bench]
+// fn part2_naive() {
+//     // unwrap in tests
+//     part2::process_naive(divan::black_box(include_str!("../data/part2.txt"))).unwrap();
+// }
+
 #[divan::bench]
 fn part2() {
     // unwrap in tests
@@ -11,7 +17,7 @@ fn part2() {
 }
 
 #[divan::bench]
-fn part2_naive() {
+fn part2_flatmap() {
     // unwrap in tests
-    part2::process_naive(divan::black_box(include_str!("../data/part2.txt"))).unwrap();
+    part2::process_flatmap(divan::black_box(include_str!("../data/part2.txt"))).unwrap();
 }

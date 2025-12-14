@@ -84,3 +84,14 @@ fn invalid_ids_in_range_naive(range: Range<'_>) -> Result<'_, Vec<String>> {
 fn is_repeated(test_str: &str, id: &str) -> bool {
     id.len().is_multiple_of(test_str.len()) && test_str.repeat(id.len() / test_str.len()).eq(id)
 }
+
+pub fn process_flatmap(input: &str) -> Result<'_, u64> {
+    let ranges = aoc_parse(input)?.1;
+    ranges
+        .into_iter()
+        .flat_map(invalid_ids_in_range)
+        .flatten()
+        .map(|s| str::parse::<u64>(&s))
+        .map(|r| r.map_err(AOCError::from))
+        .sum::<Result<u64>>()
+}
