@@ -4,7 +4,7 @@ pub fn process(input: &str) -> Result<'_, String> {
     let ranges = aoc_parse(input)?.1;
     let mut invalid_ids: Vec<String> = vec![];
     for range in ranges {
-        invalid_ids.append(&mut faster_invalid_ids_in_range(range)?)
+        invalid_ids.append(&mut invalid_ids_in_range(range)?)
     }
     let sum = invalid_ids
         .iter()
@@ -18,7 +18,7 @@ pub fn process(input: &str) -> Result<'_, String> {
     Ok(sum.to_string())
 }
 
-fn faster_invalid_ids_in_range(range: Range<'_>) -> Result<'_, Vec<String>> {
+fn invalid_ids_in_range(range: Range<'_>) -> Result<'_, Vec<String>> {
     fn invalid_ids_in_range_of_constant_power_of_10<'a>(
         range: &'a Range,
     ) -> Result<'a, Vec<String>> {
@@ -48,7 +48,7 @@ pub fn process_naive(input: &str) -> Result<'_, String> {
     let ranges = aoc_parse(input)?.1;
     let mut invalid_ids: Vec<String> = vec![];
     for range in ranges {
-        invalid_ids.append(&mut naive_invalid_ids_in_range(range)?)
+        invalid_ids.append(&mut invalid_ids_in_range_naive(range)?)
     }
     let sum = invalid_ids
         .iter()
@@ -62,7 +62,7 @@ pub fn process_naive(input: &str) -> Result<'_, String> {
     Ok(sum.to_string())
 }
 
-fn naive_invalid_ids_in_range(range: Range<'_>) -> Result<'_, Vec<String>> {
+fn invalid_ids_in_range_naive(range: Range<'_>) -> Result<'_, Vec<String>> {
     // naive version
     let mut invalid_ids: Vec<String> = vec![];
     for i in range {
