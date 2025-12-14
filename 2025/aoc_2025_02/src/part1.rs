@@ -1,4 +1,4 @@
-use super::{aoc_parse, aoc_parse_numeric, AOCError, Range, RangeNumeric, Result};
+use super::{AOCError, Range, RangeNumeric, Result, aoc_parse, aoc_parse_numeric};
 
 pub fn process(input: &str) -> Result<'_, String> {
     let ranges = aoc_parse(input)?.1;

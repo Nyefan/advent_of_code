@@ -1,12 +1,12 @@
-use aoc_2025_02::part1::process_flatmap;
 use aoc_2025_02::Result;
+use aoc_2025_02::part1::process_flatmap_numeric;
 
 #[tracing::instrument]
 pub fn main() -> Result<'static, ()> {
     tracing_subscriber::fmt::init();
 
     let file = include_str!("../../data/part1.txt");
-    let result = process_flatmap(file)?;
+    let result = process_flatmap_numeric(file)?;
     println!("{}", result);
     Ok(())
 }

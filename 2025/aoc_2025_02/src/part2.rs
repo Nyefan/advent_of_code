@@ -1,4 +1,4 @@
-use super::{aoc_parse, Range, Result};
+use super::{Range, RangeNumeric, Result, aoc_parse, aoc_parse_numeric};
 use crate::error::AOCError;
 use itertools::Itertools;
 
@@ -94,4 +94,49 @@ pub fn process_flatmap(input: &str) -> Result<'_, u64> {
         .map(|s| str::parse::<u64>(&s))
         .map(|r| r.map_err(AOCError::from))
         .sum::<Result<u64>>()
+}
+
+pub fn process_flatmap_numeric(input: &str) -> Result<'_, u64> {
+    let sum = aoc_parse_numeric(input)?
+        .1
+        .into_iter()
+        .flat_map(RangeNumeric::ranges_of_constant_powers_of_10)
+        .flat_map(invalid_ids_in_range_numeric_of_constant_power_of_10)
+        .sum::<u64>();
+    Ok(sum)
+}
+
+fn invalid_ids_in_range_numeric_of_constant_power_of_10(range: RangeNumeric) -> Vec<u64> {
+    #[inline(always)]
+    fn rshift_base10(i: u64, shift: u32) -> u64 {
+        i / (10_u64.pow(shift))
+    }
+    #[inline(always)]
+    fn repeat(i: u64, digits: u32, repetitions: u32) -> u64 {
+        let mut res = i;
+        for _ in 1..repetitions {
+            res *= 10_u64.pow(digits);
+            res += i;
+        }
+        res
+    }
+    #[inline(always)]
+    fn digits(i: u64) -> u32 {
+        i.ilog10() + 1
+    }
+    let mut invalid_ids: Vec<u64> = vec![];
+    let digits = digits(range.start);
+    for mult in 2..=digits {
+        if digits.is_multiple_of(mult) {
+            let high_start = rshift_base10(range.start, digits - digits / mult);
+            let high_end = rshift_base10(range.end, digits - digits / mult);
+            for i in high_start..=high_end {
+                let id = repeat(i, digits / mult, mult);
+                if range.start <= id && id <= range.end {
+                    invalid_ids.push(id)
+                }
+            }
+        }
+    }
+    invalid_ids
 }
