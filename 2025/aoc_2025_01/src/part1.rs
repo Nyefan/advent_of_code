@@ -1,4 +1,4 @@
-use super::{aoc_parse, Result};
+use super::{Result, aoc_parse};
 use crate::Rotation::{Left, Right};
 
 pub fn process(input: &str) -> Result<'_, String> {

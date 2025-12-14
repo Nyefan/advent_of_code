@@ -1,4 +1,4 @@
-use super::{aoc_parse, Result};
+use super::{Result, aoc_parse};
 use crate::Rotation::{Left, Right};
 
 pub fn process(input: &str) -> Result<'_, String> {
@@ -18,9 +18,7 @@ pub fn process(input: &str) -> Result<'_, String> {
             }
         }
         match dial_position {
-            _ if dial_position == 0 => {
-                zero_count += (!is_previous_position_zero) as i32
-            }
+            _ if dial_position == 0 => zero_count += (!is_previous_position_zero) as i32,
             dial_position if dial_position > 0 => {
                 zero_count += dial_position / 100;
             }
