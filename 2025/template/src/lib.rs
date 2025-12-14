@@ -1,3 +1,5 @@
+use crate::error::AOCError;
+
 pub mod error;
 pub mod part1;
 pub mod part2;
