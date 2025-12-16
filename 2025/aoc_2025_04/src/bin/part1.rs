@@ -31,8 +31,52 @@ mod tests {
     }
 
     #[test]
+    fn test_one_line() {
+        let input = "..@@.@@@@.";
+        assert_eq!(6, process(input).unwrap());
+    }
+
+    ///
+    /// ..@@.@@@@.
+    /// @@@.@.@.@@
+    #[test]
+    fn test_two_lines() {
+        let input = "..@@.@@@@.\n@@@.@.@.@@";
+        assert_eq!(12, process(input).unwrap());
+    }
+
+    ///
+    /// @@
+    /// @.
+    #[test]
+    fn test_small() {
+        let input = "@@\n@.";
+        assert_eq!(3, process(input).unwrap());
+    }
+
+    ///
+    /// @@@
+    /// @@.
+    /// @..
+    #[test]
+    fn test_three() {
+        let input = "@@@\n@@.\n@..";
+        assert_eq!(3, process(input).unwrap());
+    }
+
+    ///
+    /// @@@
+    /// .@@
+    /// ..@
+    #[test]
+    fn test_three_upper_right() {
+        let input = "@@@\n.@@\n..@";
+        assert_eq!(3, process(input).unwrap());
+    }
+
+    #[test]
     fn test_real_input() {
         let input = include_str!("../../data/part1.txt");
-        assert_eq!(0, process(input).unwrap());
+        assert_eq!(1489, process(input).unwrap());
     }
 }

@@ -1,5 +1,4 @@
 use super::Result;
-use nom::AsBytes;
 
 pub fn process(input: &str) -> Result<'_, String> {
     let total_joltage = input.lines().map(find_max_joltage_for_line).sum::<u64>();
