@@ -27,6 +27,6 @@ mod tests {
     #[test]
     fn test_real_input() {
         let input = include_str!("../../data/part1.txt");
-        assert_eq!("", process(input).unwrap());
+        assert_eq!("17158", process(input).unwrap());
     }
 }

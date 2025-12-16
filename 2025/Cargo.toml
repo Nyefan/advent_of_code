@@ -16,5 +16,6 @@ rust-version = "1.92.0"
 divan = "0.1.21"
 itertools = "0.14.0"
 nom = "8.0.0"
+rstest = "0.26.1"
 tracing = { version = "0.1.43", features = ["log-always"] }
 tracing-subscriber = "0.3.22"

@@ -11,6 +11,7 @@ tracing-subscriber.workspace = true
 
 [dev-dependencies]
 divan.workspace = true
+rstest.workspace = true
 
 [[bench]]
 name = "aoc_2025_03-part1-benchmark"
