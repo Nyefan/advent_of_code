@@ -17,8 +17,11 @@ mod tests {
 
     #[test]
     fn test() {
-        let input = "";
-        assert_eq!("", process(input).unwrap());
+        let input = "987654321111111
+811111111111119
+234234234234278
+818181911112111";
+        assert_eq!("357", process(input).unwrap());
     }
 
     #[test]
