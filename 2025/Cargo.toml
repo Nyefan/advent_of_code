@@ -1,8 +1,8 @@
 [workspace]
 members = [
-    "aoc_2025_*",
-    "aoc_2025_01",
-    "aoc_2025_02",
+  "aoc_2025_01",
+  "aoc_2025_02",
+  "aoc_2025_03",
 ]
 resolver = "3"
 
@@ -16,5 +16,5 @@ rust-version = "1.92.0"
 divan = "0.1.21"
 itertools = "0.14.0"
 nom = "8.0.0"
-tracing = "0.1.43"
+tracing = { version = "0.1.43", features = ["log-always"] }
 tracing-subscriber = "0.3.22"
