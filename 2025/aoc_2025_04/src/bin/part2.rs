@@ -27,12 +27,12 @@ mod tests {
 @.@@@.@@@@
 .@@@@@@@@.
 @.@.@@@.@.";
-        assert_eq!(0, process(input).unwrap());
+        assert_eq!(43, process(input).unwrap());
     }
 
     #[test]
     fn test_real_input() {
         let input = include_str!("../../data/part2.txt");
-        assert_eq!(0, process(input).unwrap());
+        assert_eq!(8890, process(input).unwrap());
     }
 }

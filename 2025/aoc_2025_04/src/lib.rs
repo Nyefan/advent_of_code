@@ -10,7 +10,7 @@ pub struct Floor {
     tiles: Vec<Vec<Tile>>,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 enum TileState {
     Empty,
     Roll,
@@ -26,16 +26,22 @@ impl From<char> for TileState {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 struct TileLocation {
     x: usize,
     y: usize,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Tile {
     state: TileState,
     location: TileLocation,
+}
+
+impl Tile {
+    fn is_roll(&self) -> bool {
+        self.state == TileState::Roll
+    }
 }
 
 impl From<&str> for Floor {
@@ -81,5 +87,17 @@ impl Floor {
 
     fn get_tile_at_location(&self, x: Option<usize>, y: Option<usize>) -> Option<&Tile> {
         self.tiles.get(y?)?.get(x?)
+    }
+
+    pub fn get_surrounding_roll_count(&self, tile: &Tile) -> usize {
+        self.get_surrounding_tiles(tile)
+            .iter()
+            .flatten()
+            .filter(|&tile| tile.state == TileState::Roll)
+            .count()
+    }
+
+    pub fn remove_roll(&mut self, tile: &Tile) {
+        self.tiles[tile.location.y][tile.location.x].state = TileState::Empty;
     }
 }
