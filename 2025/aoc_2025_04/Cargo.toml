@@ -1,5 +1,5 @@
 [package]
-name = "{{project-name}}"
+name = "aoc_2025_04"
 version = "0.1.0"
 edition = "2024"
 
@@ -14,11 +14,11 @@ divan.workspace = true
 rstest.workspace = true
 
 [[bench]]
-name = "{{project-name}}-part1-benchmark"
+name = "aoc_2025_04-part1-benchmark"
 path = "benches/part1.rs"
 harness = false
 
 [[bench]]
-name = "{{project-name}}-part2-benchmark"
+name = "aoc_2025_04-part2-benchmark"
 path = "benches/part2.rs"
 harness = false

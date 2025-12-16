@@ -1,8 +1,9 @@
 [workspace]
 members = [
-  "aoc_2025_01",
-  "aoc_2025_02",
-  "aoc_2025_03",
+    "aoc_2025_01",
+    "aoc_2025_02",
+    "aoc_2025_03",
+    "aoc_2025_04",
 ]
 resolver = "3"
 
@@ -17,5 +18,8 @@ divan = "0.1.21"
 itertools = "0.14.0"
 nom = "8.0.0"
 rstest = "0.26.1"
-tracing = { version = "0.1.43", features = ["log-always"] }
 tracing-subscriber = "0.3.22"
+
+[workspace.dependencies.tracing]
+version = "0.1.43"
+features = ["log-always"]
