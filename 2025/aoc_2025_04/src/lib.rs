@@ -1,4 +1,5 @@
 use crate::error::AOCError;
+use std::fmt::{Display, Formatter};
 
 pub mod error;
 pub mod part1;
@@ -6,11 +7,12 @@ pub mod part2;
 
 pub type Result<'a, T> = std::result::Result<T, AOCError>;
 
+#[derive(Debug)]
 pub struct Floor {
     tiles: Vec<Vec<Tile>>,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 enum TileState {
     Empty,
     Roll,
@@ -26,13 +28,13 @@ impl From<char> for TileState {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 struct TileLocation {
     x: usize,
     y: usize,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 pub struct Tile {
     state: TileState,
     location: TileLocation,
@@ -99,5 +101,24 @@ impl Floor {
 
     pub fn remove_roll(&mut self, tile: &Tile) {
         self.tiles[tile.location.y][tile.location.x].state = TileState::Empty;
+    }
+}
+
+impl Display for Floor {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        for row in &self.tiles {
+            for tile in row {
+                write!(
+                    f,
+                    "{}",
+                    match tile.state {
+                        TileState::Empty => ".",
+                        TileState::Roll => "@",
+                    }
+                )?;
+            }
+            writeln!(f)?;
+        }
+        Ok(())
     }
 }

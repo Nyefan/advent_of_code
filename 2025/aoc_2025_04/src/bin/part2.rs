@@ -1,5 +1,5 @@
-use aoc_2025_04::part2::process;
 use aoc_2025_04::Result;
+use aoc_2025_04::part2::process;
 
 #[tracing::instrument]
 pub fn main() -> Result<'static, ()> {
@@ -13,7 +13,7 @@ pub fn main() -> Result<'static, ()> {
 
 #[cfg(test)]
 mod tests {
-    use aoc_2025_04::part2::process;
+    use aoc_2025_04::part2::process_fast_sliding_window;
 
     #[test]
     fn test() {
@@ -27,12 +27,12 @@ mod tests {
 @.@@@.@@@@
 .@@@@@@@@.
 @.@.@@@.@.";
-        assert_eq!(43, process(input).unwrap());
+        assert_eq!(43, process_fast_sliding_window(input).unwrap());
     }
 
     #[test]
     fn test_real_input() {
         let input = include_str!("../../data/part2.txt");
-        assert_eq!(8890, process(input).unwrap());
+        assert_eq!(8890, process_fast_sliding_window(input).unwrap());
     }
 }
