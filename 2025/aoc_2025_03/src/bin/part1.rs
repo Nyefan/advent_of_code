@@ -1,5 +1,5 @@
-use aoc_2025_03::part1::process;
 use aoc_2025_03::Result;
+use aoc_2025_03::part1::process;
 
 #[tracing::instrument]
 pub fn main() -> Result<'static, ()> {
