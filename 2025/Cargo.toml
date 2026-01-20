@@ -4,6 +4,7 @@ members = [
     "aoc_2025_02",
     "aoc_2025_03",
     "aoc_2025_04",
+    "aoc_2025_05",
 ]
 resolver = "3"
 
@@ -22,4 +23,3 @@ tracing-subscriber = "0.3.22"
 
 [workspace.dependencies.tracing]
 version = "0.1.43"
-#features = ["log-always"]
