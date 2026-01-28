@@ -3,7 +3,6 @@ use crate::error::{AOCError, ParseErrors};
 use itertools::Itertools;
 
 pub fn process(input: &str) -> Result<'_, u32> {
-    dbg!(&input);
     let (ranges, ingredients) = input
         .split("\n\n")
         .collect_tuple()
