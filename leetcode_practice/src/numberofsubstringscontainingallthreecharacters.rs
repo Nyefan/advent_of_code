@@ -35,7 +35,7 @@ fn sliding_window(s: String) -> i32 {
             'a' => indices_a.push(i),
             'b' => indices_b.push(i),
             'c' => indices_c.push(i),
-            default => panic!("character other than a, b, or c encountered"),
+            _ => panic!("character other than a, b, or c encountered"),
         }
     }
 
@@ -61,10 +61,10 @@ fn sliding_window(s: String) -> i32 {
             Some('a') => {
                 i += 1;
                 a_marker += 1;
-                if (a_marker >= indices_a.len()) {
+                if a_marker >= indices_a.len() {
                     break;
                 }
-                if (indices_a[a_marker] >= i && indices_a[a_marker] <= j) {
+                if indices_a[a_marker] >= i && indices_a[a_marker] <= j {
                     count += s.len() - j;
                     continue;
                 }
@@ -74,10 +74,10 @@ fn sliding_window(s: String) -> i32 {
             Some('b') => {
                 i += 1;
                 b_marker += 1;
-                if (b_marker >= indices_b.len()) {
+                if b_marker >= indices_b.len() {
                     break;
                 }
-                if (indices_b[b_marker] >= i && indices_b[b_marker] <= j) {
+                if indices_b[b_marker] >= i && indices_b[b_marker] <= j {
                     count += s.len() - j;
                     continue;
                 }
@@ -87,10 +87,10 @@ fn sliding_window(s: String) -> i32 {
             Some('c') => {
                 i += 1;
                 c_marker += 1;
-                if (c_marker >= indices_c.len()) {
+                if c_marker >= indices_c.len() {
                     break;
                 }
-                if (indices_c[c_marker] >= i && indices_c[c_marker] <= j) {
+                if indices_c[c_marker] >= i && indices_c[c_marker] <= j {
                     count += s.len() - j;
                     continue;
                 }
@@ -106,8 +106,7 @@ fn sliding_window(s: String) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::numberofsubstringscontainingallthreecharacters::naive;
-    use crate::numberofsubstringscontainingallthreecharacters::sliding_window;
+    use crate::numberofsubstringscontainingallthreecharacters::*;
     use rstest::rstest;
 
     #[rstest]
