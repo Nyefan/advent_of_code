@@ -76,7 +76,7 @@ fn zip_add(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<L
 
 #[cfg(test)]
 mod tests {
-    use crate::addtwonumbers::*;
+    use super::*;
     use rstest::rstest;
 
     #[rstest]

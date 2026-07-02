@@ -106,7 +106,7 @@ fn sliding_window(s: String) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::numberofsubstringscontainingallthreecharacters::*;
+    use super::*;
     use rstest::rstest;
 
     #[rstest]
