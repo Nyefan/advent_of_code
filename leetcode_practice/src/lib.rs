@@ -4,3 +4,5 @@ pub mod q00131_palindrome_partitioning;
 pub mod q00146_lru_cache;
 pub mod q00328_odd_even_linked_list;
 pub mod q01358_number_of_substrings_containing_all_three_characters;
+
+mod common;

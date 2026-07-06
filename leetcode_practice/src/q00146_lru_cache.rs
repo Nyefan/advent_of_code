@@ -142,10 +142,6 @@ mod tests {
         Put(i32, i32),
         Get(i32),
     }
-    enum Args {
-        One([i32; 1]),
-        Two([i32; 2]),
-    }
 
     #[rstest]
     #[case(
